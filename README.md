@@ -1,8 +1,8 @@
-#RentMatch App 
+# RentMatch App 
 
 RentMatch is a real-time Meteor app created for the 2021 Meteor Hackathon. RentMatch is designed to make finding a place to live easier by enabling easier communication between renters and landlords and reducing the number of rental scams. 
 
-##Team Members
+## Team Members
 
 **Team 491 Team 9**
 
