@@ -14,10 +14,18 @@ class RentalsCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
         name: String,
+        ownerId: String,
         description: String,
         price: Number,
         rooms: Number,
         bathrooms: Number,
+        likes: Array,
+        'likes.$': {
+            type: object, 
+            likerId: String,
+            likedTime: Date,
+            approvedTime: Date,
+        }
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);

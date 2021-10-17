@@ -11,7 +11,7 @@ class Landing extends React.Component {
     }
     return (
       <Grid centered id='landing-page' verticalAlign='middle' container>
-        <Grid.Column>
+        <Grid.Column width={6}>
           <RentalCard rental={rental}/>
         </Grid.Column>
       </Grid>
