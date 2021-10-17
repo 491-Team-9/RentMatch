@@ -1,20 +1,25 @@
 import React from 'react';
-import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { Grid, Segment, Header, TextArea, Label } from 'semantic-ui-react';
+import { AutoForm, ErrorsField, LongTextField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Stuffs } from '../../api/stuff/Stuff';
+import { Rentals } from '../../api/stuff/Rental';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   name: String,
-  quantity: Number,
-  condition: {
+  description: String,
+  location: String,
+  price: Number,
+  bedrooms: Number,
+  bathrooms: Number,
+  type: {
     type: String,
-    allowedValues: ['excellent', 'good', 'fair', 'poor'],
-    defaultValue: 'good',
+    allowedValues: ['house', 'room', 'apartment', 'condo', 'in-law', 'cottage', 'loft'],
+    defaultValue: 'apartment',
   },
 });
 
@@ -25,9 +30,10 @@ class AddStuff extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { name, quantity, condition } = data;
-    const owner = Meteor.user().username;
-    Stuffs.collection.insert({ name, quantity, condition, owner },
+    const { name, description, location, price, bedrooms, bathrooms, type } = data;
+    const owner = Meteor.user();
+    console.log(owner);
+    Rentals.collection.insert({ name, description, location, price, bedrooms, bathrooms, type, likes: [], ownerId: owner._id },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -44,12 +50,16 @@ class AddStuff extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center">Add Stuff</Header>
+          <Header as="h2" textAlign="center">Add Rental</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
               <TextField name='name'/>
-              <NumField name='quantity' decimal={false}/>
-              <SelectField name='condition'/>
+              <TextField name='location'/>
+              <LongTextField size="4" name='description'/>
+              <NumField name='price' decimal={false}/>
+              <NumField name='bedrooms' decimal={false}/>
+              <NumField name='bathrooms' decimal={false}/>
+              <SelectField name='type'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
             </Segment>

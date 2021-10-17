@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
+import { string } from 'prop-types';
 
 /**
  * The StuffsCollection. It encapsulates state and variable values for stuff.
@@ -17,15 +18,14 @@ class RentalsCollection {
         ownerId: String,
         description: String,
         price: Number,
-        rooms: Number,
+        bedrooms: Number,
         bathrooms: Number,
+        type: String,
         likes: Array,
-        'likes.$': {
-            type: object, 
-            likerId: String,
-            likedTime: Date,
-            approvedTime: Date,
-        }
+        'likes.$': Object,
+        'likes.$.liker': Object,
+        'likes.$.likedTime': Date,
+        'likes.$.approvedTime': Date,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -38,6 +38,6 @@ class RentalsCollection {
 
 /**
  * The singleton instance of the StuffsCollection.
- * @type {StuffsCollection}
+ * @type {RentalsCollection}
  */
-export const Stuffs = new RentalsCollection();
+export const Rentals = new RentalsCollection();
