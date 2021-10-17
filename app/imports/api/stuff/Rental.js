@@ -23,7 +23,7 @@ class RentalsCollection {
         type: String,
         likes: Array,
         'likes.$': Object,
-        'likes.$.liker': Object,
+        'likes.$.likerId': String,
         'likes.$.likedTime': Date,
         'likes.$.approvedTime': Date,
     }, { tracker: Tracker });
@@ -31,6 +31,7 @@ class RentalsCollection {
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
     this.userPublicationName = `${this.name}.publication.user`;
+    this.likedPublicationName = `${this.name}.publication.liked`;
     this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }

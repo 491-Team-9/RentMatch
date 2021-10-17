@@ -12,6 +12,13 @@ Meteor.publish(Rentals.userPublicationName, function () {
   return this.ready();
 });
 
+Meteor.publish(Rentals.likedPublicationName, function () {
+  if (this.userId) {
+    return Rentals.collection.find({ 'likes.likerId': this.userId });
+  }
+  return this.ready();
+});
+
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.
 Meteor.publish(Rentals.adminPublicationName, function () {
