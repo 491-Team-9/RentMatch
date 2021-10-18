@@ -72,6 +72,7 @@ class Landing extends React.Component {
     this.setState((state, props) => {
       state.rentalIndex += 1;
     });
+    this.forceUpdate();
   }
 }
 
