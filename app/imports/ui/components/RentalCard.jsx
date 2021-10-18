@@ -16,7 +16,7 @@ class RentalCard extends React.Component {
     }
 
     rejectAction() {
-        let getNextCard = this.props.nextCard;
+        let getNextCard = this.props.nextCardFunction;
         let rental = this.props.rental;
         Rentals.collection.update(rental._id,
             { $push: { 'dislikes': {  
@@ -34,7 +34,7 @@ class RentalCard extends React.Component {
     }
 
     likeAction() {
-        let getNextCard = this.props.nextCard;
+        let getNextCard = this.props.nextCardFunction;
         let rental = this.props.rental;
         Rentals.collection.update(rental._id,
             { $push: { 'likes': {  
@@ -62,12 +62,13 @@ class RentalCard extends React.Component {
                     </Card.Meta>
                 </Card.Content>
                 <Image src='https://about.hawaiilife.com/wp-content/uploads/2018/06/View-from-Penthouse-at-the-Hokua-at-1288-Ala-Moana-e1528127882669.jpg' wrapped ui={false} />
-
+                {/* middle section of the card */}
                 <Card.Content>
                     <Card.Description>
                         {rental.description}
                     </Card.Description>
                 </Card.Content>
+                {/* bottom part of the card with buttons */}
                 <Card.Content extra>
                     <Button color="red" onClick={this.rejectAction}>
                         <Button.Content>
@@ -89,7 +90,7 @@ class RentalCard extends React.Component {
 
 // Require a document to be passed to this component.
 RentalCard.propTypes = {
-    nextCard: PropTypes.func,
+    nextCardFunction: PropTypes.func,
     rental: PropTypes.shape({
         _id: PropTypes.string,
         name: PropTypes.string,
