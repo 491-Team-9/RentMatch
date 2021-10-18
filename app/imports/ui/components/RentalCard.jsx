@@ -7,13 +7,14 @@ import './rental-card.css';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RentalCard extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log("constructing card", props);
         this.owner = Meteor.user();
     }
 
     rejectAction(rental) {
-        console.log(rental);
+        let getNextCard = this.props.nextCard;
         Rentals.collection.update(rental._id,
             { $push: { 'dislikes': {  
                 dislikerId: this.owner._id,
@@ -24,13 +25,13 @@ class RentalCard extends React.Component {
                     swal('Error', error.message, 'error');
                 } else {
                     swal('Success', 'disliked', 'success');
+                    getNextCard();
                 }
             });
     }
 
     likeAction(rental) {
-        console.log(rental);
-        console.log(this.owner);
+        let getNextCard = this.props.nextCard;
         Rentals.collection.update(rental._id,
             { $push: { 'likes': {  
                 likerId: this.owner._id,
@@ -41,34 +42,35 @@ class RentalCard extends React.Component {
                     swal('Error', error.message, 'error');
                 } else {
                     swal('Success', 'Liked', 'success');
+                    getNextCard();
                 }
             });
     }
 
     render() {
-        let data = this.props.rental;
+        let rental = this.props.rental;
         return (
             <Card centered fluid>
                 <Card.Content>
-                    <Card.Header>{data.name}</Card.Header>
+                    <Card.Header>{rental.name}</Card.Header>
                     <Card.Meta>
-                        {data.bedrooms} br
+                        {rental.bedrooms} br
                     </Card.Meta>
                 </Card.Content>
                 <Image src='https://about.hawaiilife.com/wp-content/uploads/2018/06/View-from-Penthouse-at-the-Hokua-at-1288-Ala-Moana-e1528127882669.jpg' wrapped ui={false} />
 
                 <Card.Content>
                     <Card.Description>
-                        {data.description}
+                        {rental.description}
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button color="red" onClick={e => this.rejectAction(data)}>
+                    <Button color="red" onClick={e => this.rejectAction(rental)}>
                         <Button.Content>
                             <Icon name='close' />
                         </Button.Content>
                     </Button>
-                    <Button color="blue" floated="right" onClick={e => this.likeAction(data)}>
+                    <Button color="blue" floated="right" onClick={e => this.likeAction(rental)}>
                         <Button.Content>
                             <Icon name='heart' />
                         </Button.Content>
@@ -83,6 +85,7 @@ class RentalCard extends React.Component {
 
 // Require a document to be passed to this component.
 RentalCard.propTypes = {
+    nextCard: PropTypes.func,
     rental: PropTypes.shape({
         _id: PropTypes.string,
         name: PropTypes.string,
