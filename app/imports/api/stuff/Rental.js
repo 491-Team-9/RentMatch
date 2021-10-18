@@ -25,7 +25,14 @@ class RentalsCollection {
         'likes.$': Object,
         'likes.$.likerId': String,
         'likes.$.likedTime': Date,
-        'likes.$.approvedTime': Date,
+        'likes.$.approvedTime': {
+            type: Date,
+            optional: true,
+        },
+        dislikes: Array,
+        'dislikes.$': Object,
+        'dislikes.$.dislikerId': String,
+        'dislikes.$.dislikedTime': Date,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
