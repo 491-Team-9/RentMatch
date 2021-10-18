@@ -7,11 +7,11 @@ import { Rentals } from '../../api/stuff/Rental';
 // Initialize the database with a default data document.
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
-  Rentals.collection.insert(data);
+  Stuffs.collection.insert(data);
 }
 
 // Initialize the StuffsCollection if empty.
-if (Rentals.collection.find().count() === 0) {
+if (Stuffs.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
     console.log('Creating default data.');
     Meteor.settings.defaultData.map(data => addData(data));
