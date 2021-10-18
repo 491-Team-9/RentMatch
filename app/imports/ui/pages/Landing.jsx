@@ -12,6 +12,13 @@ class Landing extends React.Component {
 
   renderPage() {
     let rental = this.props.rentals[0];
+    if (!rental) {
+      return (
+        <Grid centered id='landing-page' verticalAlign='middle' container>
+          No rentals :( 
+        </Grid>
+      );
+    }
     return (
       <Grid centered id='landing-page' verticalAlign='middle' container>
         <Grid.Column width={6}>

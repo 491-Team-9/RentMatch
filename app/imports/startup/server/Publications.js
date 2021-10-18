@@ -7,7 +7,7 @@ import { Rentals } from '../../api/stuff/Rental';
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
 Meteor.publish(Rentals.userPublicationName, function () {
   if (this.userId) {
-    return Rentals.collection.find({ ownerId: this.userId });
+    return Rentals.collection.find({});
   }
   return this.ready();
 });
