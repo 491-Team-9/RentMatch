@@ -29,7 +29,10 @@ class RentalsCollection {
             type: Date,
             optional: true,
         },
-        dislikes: Array,
+        dislikes: {
+            type: Array,
+            optional: true
+        },
         'dislikes.$': Object,
         'dislikes.$.dislikerId': String,
         'dislikes.$.dislikedTime': Date,

@@ -11,10 +11,13 @@ class RentalCard extends React.Component {
         super(props);
         console.log("constructing card", props);
         this.owner = Meteor.user();
+        this.rejectAction = this.rejectAction.bind(this);
+        this.likeAction = this.likeAction.bind(this);
     }
 
-    rejectAction(rental) {
+    rejectAction() {
         let getNextCard = this.props.nextCard;
+        let rental = this.props.rental;
         Rentals.collection.update(rental._id,
             { $push: { 'dislikes': {  
                 dislikerId: this.owner._id,
@@ -30,8 +33,9 @@ class RentalCard extends React.Component {
             });
     }
 
-    likeAction(rental) {
+    likeAction() {
         let getNextCard = this.props.nextCard;
+        let rental = this.props.rental;
         Rentals.collection.update(rental._id,
             { $push: { 'likes': {  
                 likerId: this.owner._id,
@@ -65,12 +69,12 @@ class RentalCard extends React.Component {
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button color="red" onClick={e => this.rejectAction(rental)}>
+                    <Button color="red" onClick={this.rejectAction}>
                         <Button.Content>
                             <Icon name='close' />
                         </Button.Content>
                     </Button>
-                    <Button color="blue" floated="right" onClick={e => this.likeAction(rental)}>
+                    <Button color="blue" floated="right" onClick={this.likeAction}>
                         <Button.Content>
                             <Icon name='heart' />
                         </Button.Content>
