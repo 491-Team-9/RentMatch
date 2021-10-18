@@ -46,9 +46,6 @@ class Landing extends React.Component {
     //   console.log("state is now ", state);
     // });
     // this.render();
-    this.setState((state, props) => {
-      state.rentalIndex += 1;
-    });
   }
 
   renderPage() {
@@ -72,7 +69,9 @@ class Landing extends React.Component {
 
   nextCard() {
     console.log('getting next card, state is', this.state);
-    this.setUpState();
+    this.setState((state, props) => {
+      state.rentalIndex += 1;
+    });
   }
 }
 
@@ -83,10 +82,8 @@ export default withTracker(() => {
   const ready = subscription.ready();
   // Get the Stuff documents
   const rentals = Rentals.collection.find({}).fetch();
-  const firstRental = rentals[0];
   return {
     rentals,
-    firstRental,
     ready,
   };
 
