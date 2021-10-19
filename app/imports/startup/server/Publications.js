@@ -11,6 +11,13 @@ Meteor.publish(Rentals.userPublicationName, function () {
   return this.ready();
 });
 
+Meteor.publish(Rentals.postedRentalsPublicationName, function () {
+  if (this.userId) {
+    return Rentals.collection.find({ 'ownerId': this.userId });
+  }
+  return this.ready();
+});
+
 Meteor.publish(Rentals.likedPublicationName, function () {
   if (this.userId) {
     return Rentals.collection.find({ 'likes.likerId': this.userId });

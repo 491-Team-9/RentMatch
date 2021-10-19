@@ -42,6 +42,7 @@ class RentalsCollection {
     // Define names for publications and subscriptions
     this.userPublicationName = `${this.name}.publication.user`;
     this.likedPublicationName = `${this.name}.publication.liked`;
+    this.postedRentalsPublicationName = `${this.name}.publication.posted`;
     this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }

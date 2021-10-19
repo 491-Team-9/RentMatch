@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import LikedRental from '../pages/LikedRental';
+import PostedRentals from '../pages/PostedRentals';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddRental from '../pages/AddRental';
 import EditStuff from '../pages/EditStuff';
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/liked" component={LikedRental}/>
             <ProtectedRoute path="/add" component={AddRental}/>
+            <ProtectedRoute path="/posted" component={PostedRentals}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <Route component={NotFound}/>
