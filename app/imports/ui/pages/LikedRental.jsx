@@ -40,10 +40,14 @@ LikedRentals.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Rentals.likedPublicationName);
+  const user = Meteor.user();
+  let rentals = [];
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const rentals = Rentals.collection.find({}).fetch();
+  if (ready) {
+    rentals = Rentals.collection.find({ 'dislikes.dislikerId': { $ne: user._id } }).fetch();
+  }
   return {
     rentals,
     ready,
