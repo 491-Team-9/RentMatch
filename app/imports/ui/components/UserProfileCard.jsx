@@ -12,13 +12,23 @@ class UserProfileCard extends React.Component {
     constructor(props) {
         console.log("constructing profile");
         super(props);
-    }
-
-    rejectAction() {
-
+        this.rejectAction = this.rejectAction.bind(this);
+        this.acceptAction = this.acceptAction.bind(this);
     }
 
     acceptAction() {
+        Meteor.call('rentals.approveLiker', {rentalId: this.props.rental._id, likerId: this.props.userProfileId }, 
+        (err, res) => {
+            if (err) {
+
+            }
+            else {
+
+            }
+        });
+    }
+
+    rejectAction() {
 
     }
 
@@ -62,6 +72,17 @@ class UserProfileCard extends React.Component {
 UserProfileCard.propTypes = {
     viewType: PropTypes.string,
     userProfileId: PropTypes.string,
+    rental: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.string,
+        price: PropTypes.number,
+        bedrooms: PropTypes.number,
+        bathrooms: PropTypes.number,
+        type: PropTypes.string,
+        images: PropTypes.array,
+    }).isRequired,
 };
 
 

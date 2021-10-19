@@ -32,7 +32,7 @@ class PostedRentals extends React.Component {
                       <Card.Group>
                     {
                       rental.likes.map((like) => {
-                        return (<UserProfileCard key={like.likerId} userProfileId={like.likerId}/>)
+                        return (<UserProfileCard key={like.likerId} rental={rental} userProfileId={like.likerId}/>)
                       })
                     }
                     </Card.Group>

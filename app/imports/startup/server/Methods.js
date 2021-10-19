@@ -1,14 +1,27 @@
 import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
+import { Rentals } from '../../api/rental/Rental';
 
 Meteor.methods({
-  'todos.updateText'({ todoId, newText }) {
+  'rentals.approveLiker'({ rentalId, likerId }) {
     new SimpleSchema({
-      todoId: { type: String },
-      newText: { type: String },
-    }).validate({ todoId, newText });
+      rentalId: { type: String },
+      likerId: { type: String },
+    }).validate({ rentalId, likerId });
 
-    // console.log(newText);
+    Rentals.collection.update(
+      {
+        $and: [
+          { _id: rentalId },
+          { 'likes.likerId': likerId }
+
+        ]
+      },
+      {
+        $set: {
+          'likes.$.approvedTime': new Date(),
+        }
+      });
 
   },
 });
