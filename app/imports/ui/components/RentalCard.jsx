@@ -57,10 +57,12 @@ class RentalCard extends React.Component {
     return (
       <Card centered fluid>
         <Card.Content>
-          <Card.Header>{rental.name}</Card.Header>
-          <Card.Meta>
-            {rental.bedrooms} br
-          </Card.Meta>
+          <Card.Header>{rental.title}</Card.Header>
+          <Card.Content>
+            ${rental.price}/mo
+            <br/>{rental.type} | {rental.bedrooms} bd | {rental.bathrooms} ba
+            <br/>{rental.location}
+          </Card.Content>
         </Card.Content>
         <Image src='https://about.hawaiilife.com/wp-content/uploads/2018/06/View-from-Penthouse-at-the-Hokua-at-1288-Ala-Moana-e1528127882669.jpg' wrapped ui={false} />
         {/* middle section of the card */}
@@ -94,12 +96,13 @@ RentalCard.propTypes = {
   nextCardFunction: PropTypes.func,
   rental: PropTypes.shape({
     _id: PropTypes.string,
-    name: PropTypes.string,
+    title: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
     price: PropTypes.number,
     bedrooms: PropTypes.number,
     bathrooms: PropTypes.number,
+    type: PropTypes.string,
     images: PropTypes.array,
   }).isRequired,
 };

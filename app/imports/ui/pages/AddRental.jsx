@@ -9,7 +9,7 @@ import { Rentals } from '../../api/rental/Rental';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  name: String,
+  title: String,
   description: String,
   location: String,
   price: Number,
@@ -29,10 +29,10 @@ class AddRental extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { name, description, location, price, bedrooms, bathrooms, type } = data;
+    const { title, description, location, price, bedrooms, bathrooms, type } = data;
     const owner = Meteor.user();
     // console.log(owner);
-    Rentals.collection.insert({ name, description, location, price, bedrooms, bathrooms, type, likes: [], ownerId: owner._id },
+    Rentals.collection.insert({ title, description, location, price, bedrooms, bathrooms, type, likes: [], ownerId: owner._id },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -52,7 +52,7 @@ class AddRental extends React.Component {
           <Header as="h2" textAlign="center">Add Rental</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
-              <TextField name='name'/>
+              <TextField name='title'/>
               <TextField name='location'/>
               <LongTextField size="4" name='description'/>
               <NumField name='price' decimal={false}/>

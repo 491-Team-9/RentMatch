@@ -12,7 +12,7 @@
   ],
 
   "defaultRentals": [
-    { "name": "Apartment 1", "ownerId": "",
+    { "title": "Apartment 1", "ownerId": "",
       "description": "Quaint little apartment near the ocean.", "price": 1000, "bedrooms": 1,
       "bathrooms": 1,
       "type": "Apartment"

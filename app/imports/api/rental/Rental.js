@@ -13,7 +13,7 @@ class RentalsCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      name: String,
+      title: String,
       ownerId: String,
       description: String,
       location: String,
