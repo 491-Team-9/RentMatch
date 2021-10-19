@@ -13,7 +13,7 @@ Meteor.publish(Rentals.userPublicationName, function () {
 
 Meteor.publish(Rentals.postedRentalsPublicationName, function () {
   if (this.userId) {
-    return Rentals.collection.find({ 'ownerId': this.userId });
+    return Rentals.collection.find({ ownerId: this.userId });
   }
   return this.ready();
 });
@@ -25,9 +25,9 @@ Meteor.publish(Rentals.likedPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish('allUsers', function() {
-  return Meteor.users.find({}, { fields: { _id: 1, username: 1, emails: 1 } } );
-})
+Meteor.publish('allUsers', function () {
+  return Meteor.users.find({}, { fields: { _id: 1, username: 1, emails: 1 } });
+});
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.

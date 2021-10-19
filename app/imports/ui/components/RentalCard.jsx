@@ -32,7 +32,7 @@ class RentalCard extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'disliked', 'success');
+          swal('Removed', 'Item removed from your list', 'success');
           getNextCard();
         }
       });
@@ -54,7 +54,7 @@ class RentalCard extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Liked', 'success');
+          swal('Added', 'Item added to your liked rentals', 'success');
           getNextCard();
         }
       });

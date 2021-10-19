@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Grid } from 'semantic-ui-react';
+import { Container, Header, Loader, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Rentals } from '../../api/rental/Rental';
@@ -29,21 +29,17 @@ class PostedRentals extends React.Component {
     return (
       <Container>
         <Header as="h2" textAlign="center">Your Rentals</Header>
-        <Grid>
-          {
-            this.props.rentals.map((rental) => (
-              <Grid.Row>
-                <Grid.Column width="4">
-                  <RentalCard key={rental._id} viewType="posted" rental={rental}/>
-                </Grid.Column>
-                <Card.Group>
-                  {
-                    rental.likes.map((like) => (<UserProfileCard key={like.likerId} rental={rental} userProfileId={like.likerId}/>))
-                  }
-                </Card.Group>
-              </Grid.Row>
-            ))
-          }
+        <Grid columns={2}>
+          {this.props.rentals.map((rental) => (
+            <Grid.Row key={rental._id}>
+              <Grid.Column>
+                <RentalCard key={rental._id} viewType="posted" rental={rental}/>
+              </Grid.Column>
+              <Grid.Column>
+                {rental.likes.map((like) => (<UserProfileCard key={like.likerId} rental={rental} userProfileId={like.likerId}/>))}
+              </Grid.Column>
+            </Grid.Row>
+          ))}
         </Grid>
       </Container>
     );

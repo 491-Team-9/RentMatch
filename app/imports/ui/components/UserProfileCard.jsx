@@ -63,7 +63,7 @@ class UserProfileCard extends React.Component {
 // Require a document to be passed to this component.
 UserProfileCard.propTypes = {
   viewType: PropTypes.string,
-  users: PropTypes.object,
+  users: PropTypes.array,
   userProfileId: PropTypes.string,
   rental: PropTypes.shape({
     _id: PropTypes.string,
