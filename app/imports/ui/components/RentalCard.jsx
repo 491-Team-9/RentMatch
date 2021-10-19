@@ -9,9 +9,9 @@ import { Rentals } from '../../api/rental/Rental';
 class RentalCard extends React.Component {
 
     constructor(props) {
+        console.log('constructing card', props);
         super(props);
-        // console.log('constructing card', props);
-        this.owner = Meteor.user();
+        this.cardUser = Meteor.user();
         this.rejectAction = this.rejectAction.bind(this);
         this.likeAction = this.likeAction.bind(this);
     }
@@ -23,7 +23,7 @@ class RentalCard extends React.Component {
             {
                 $push: {
                     dislikes: {
-                        dislikerId: this.owner._id,
+                        dislikerId: this.cardUser._id,
                         dislikedTime: new Date(),
                     }
                 }
@@ -45,7 +45,7 @@ class RentalCard extends React.Component {
             {
                 $push: {
                     likes: {
-                        likerId: this.owner._id,
+                        likerId: this.cardUser._id,
                         likedTime: new Date(),
                     }
                 }

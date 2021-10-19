@@ -1,29 +1,46 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
+import UserProfileCard from '../components/UserProfileCard';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class PostedRentals extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
-    console.log(this.props);
     return (this.props.ready) ? ((this.props.rentals.length) ? this.renderPage() : "no rentals" ) : <Loader active>Getting data</Loader>;
   }
 
   // Render the page once subscriptions have been received.
   renderPage() {
-    console.log(this.props.rentals);
+    console.log(this.props.rentals)
     return (
       <Container>
         <Header as="h2" textAlign="center">Your Rentals</Header>
-        <Card.Group itemsPerRow={4}>
-          {this.props.rentals.map((rental, index) => <RentalCard key={index} viewType="posted" rental={rental} />)}
-        </Card.Group>
+            <Grid>
+              {
+                this.props.rentals.map((rental) => {
+                  return (
+                    <Grid.Row>
+                      <Grid.Column width="4">
+                        <RentalCard key={rental._id} viewType="posted" rental={rental}/>
+                      </Grid.Column>
+                      <Card.Group>
+                    {
+                      rental.likes.map((like) => {
+                        return (<UserProfileCard key={like.likerId} userProfileId={like.likerId}/>)
+                      })
+                    }
+                    </Card.Group>
+                    </Grid.Row>
+                  )
+                })
+              }
+            </Grid>
       </Container>
     );
   }
