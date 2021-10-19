@@ -30,6 +30,15 @@ class Landing extends React.Component {
 
   }
 
+  componentDidMount() {
+    let success = (foo) => { 
+      console.log(foo);
+    }
+    let error = (foo) => { 
+      console.log(foo);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, {});
+  }
   renderPage() {
     // console.log('renderPage()');
     const rental = this.props.rentals[this.state.currentRentalIndex];
@@ -65,11 +74,14 @@ Landing.propTypes = {
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Rentals.userPublicationName);
-  // const user = Meteor.user;
+  let rentals = [];
+  let user = Meteor.user();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // TODO some kind of pagination ex: fetch 100, then next 100 etc
-  const rentals = Rentals.collection.find({ }).fetch();
+  if (ready) {
+    rentals = Rentals.collection.find({ 'likes.likerId': { $ne: user._id }, 'dislikes.dislikerId': { $ne: user._id } }).fetch();
+  }
   return {
     rentals,
     ready,
