@@ -16,14 +16,12 @@ class LikedRentals extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
-    console.log(this.props.rentals);
+    // console.log(this.props.rentals);
     return (
       <Container>
         <Header as="h2" textAlign="center">Liked Rentals</Header>
         <Card.Group itemsPerRow={4}>
-          {this.props.rentals.map((rental) => {
-            return (<RentalCard key={rental._id} viewType="liked" rental={rental} />)
-          })}
+          {this.props.rentals.map((rental) => (<RentalCard key={rental._id} viewType="liked" rental={rental} />))}
         </Card.Group>
       </Container>
     );

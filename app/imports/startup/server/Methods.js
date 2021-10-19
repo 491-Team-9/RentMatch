@@ -13,15 +13,16 @@ Meteor.methods({
       {
         $and: [
           { _id: rentalId },
-          { 'likes.likerId': likerId }
+          { 'likes.likerId': likerId },
 
-        ]
+        ],
       },
       {
         $set: {
           'likes.$.approvedTime': new Date(),
-        }
-      });
+        },
+      },
+    );
 
   },
 });

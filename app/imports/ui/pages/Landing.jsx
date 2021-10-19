@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Grid, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
@@ -30,24 +30,24 @@ class Landing extends React.Component {
 
   }
 
-  componentDidMount() {
-    let success = (foo) => { 
+  /*  componentDidMount() {
+    const success = (foo) => {
       console.log(foo);
-    }
-    let error = (foo) => { 
+    };
+    const error = (foo) => {
       console.log(foo);
-    }
+    };
     navigator.geolocation.getCurrentPosition(success, error, {});
-  }
+  } */
 
   renderPage() {
     // console.log('renderPage()');
     const rental = this.props.rentals[this.state.currentRentalIndex];
     if (!rental) {
       return (
-        <Grid centered id='landing-page' verticalAlign='middle' container>
-          No rentals :(
-        </Grid>
+        <Header id="signout-page" as="h2" textAlign="center">
+            No rentals
+        </Header>
       );
     }
     return (
@@ -60,10 +60,10 @@ class Landing extends React.Component {
   }
 
   getNextCard() {
-    // console.log('getting next card, state is', this.state);
+    /*    // console.log('getting next card, state is', this.state);
     this.setState((state, props) => {
       state.currentRentalIndex += 1;
-    });
+    }); */
     this.forceUpdate();
   }
 }
@@ -76,7 +76,7 @@ Landing.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Rentals.userPublicationName);
   let rentals = [];
-  let user = Meteor.user();
+  const user = Meteor.user();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // TODO some kind of pagination ex: fetch 100, then next 100 etc
