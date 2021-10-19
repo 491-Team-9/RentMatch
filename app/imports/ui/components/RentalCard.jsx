@@ -62,6 +62,43 @@ class RentalCard extends React.Component {
 
     render() {
         const rental = this.props.rental;
+        const viewType = this.props.viewType;
+        console.log(this.props);
+        let footer;
+        if (viewType == "landing") {
+            footer = 
+                (<Card.Content extra>
+                    <Button color="red" onClick={this.rejectAction}>
+                        <Button.Content>
+                            <Icon name='close' />
+                        </Button.Content>
+                    </Button>
+                    <Button color="blue" floated="right" onClick={this.likeAction}>
+                        <Button.Content>
+                            <Icon name='heart' />
+                        </Button.Content>
+                    </Button>
+                </Card.Content>);
+        }
+        else if (viewType == "liked") {
+            let likedTime = this.props.rental.likes.find(x => x.likerId == Meteor.user()._id && x.approvedTime );
+            if (likedTime) {
+                footer= (<Card.Content extra> approved!  </Card.Content>);
+            }
+            else {
+                footer = (<Card.Content extra> awaiting approval...  </Card.Content>);
+            }
+        }
+        else if (viewType == "posted") {
+            let likes = this.props.rental.likes;
+            if (likes.length) {
+                footer =
+                (<Card.Content extra>
+                    { likes.map(like => like.likerId )}
+                </Card.Content>);
+            }
+            else footer = (<Card.Content extra> hello </Card.Content>);
+        }
         return (
             <Card centered fluid>
                 <Card.Content>
@@ -79,25 +116,17 @@ class RentalCard extends React.Component {
                         {rental.description}
                     </Card.Description>
                 </Card.Content>
+                {footer}
                 {/* bottom part of the card with buttons */}
-                <Card.Content extra>
-                    <Button color="red" onClick={this.rejectAction}>
-                        <Button.Content>
-                            <Icon name='close' />
-                        </Button.Content>
-                    </Button>
-                    <Button color="blue" floated="right" onClick={this.likeAction}>
-                        <Button.Content>
-                            <Icon name='heart' />
-                        </Button.Content>
-                    </Button>
 
-                </Card.Content>
             </Card>
         );
     }
 
+
+
 }
+
 
 // Require a document to be passed to this component.
 RentalCard.propTypes = {

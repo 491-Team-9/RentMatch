@@ -39,6 +39,7 @@ class Landing extends React.Component {
     }
     navigator.geolocation.getCurrentPosition(success, error, {});
   }
+
   renderPage() {
     // console.log('renderPage()');
     const rental = this.props.rentals[this.state.currentRentalIndex];
@@ -52,7 +53,7 @@ class Landing extends React.Component {
     return (
       <Grid centered id='landing-page' verticalAlign='middle' container>
         <Grid.Column width={6}>
-          <RentalCard key={rental._id} rental={rental} nextCardFunction={this.getNextCard}/>
+          <RentalCard key={rental._id} rental={rental} viewType="landing" nextCardFunction={this.getNextCard}/>
         </Grid.Column>
       </Grid>
     );
@@ -79,7 +80,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // TODO some kind of pagination ex: fetch 100, then next 100 etc
-  if (ready) {
+  if (ready && user) {
     rentals = Rentals.collection.find({ 'likes.likerId': { $ne: user._id }, 'dislikes.dislikerId': { $ne: user._id } }).fetch();
   }
   return {

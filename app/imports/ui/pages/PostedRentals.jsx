@@ -22,7 +22,7 @@ class PostedRentals extends React.Component {
       <Container>
         <Header as="h2" textAlign="center">Your Rentals</Header>
         <Card.Group itemsPerRow={4}>
-          {this.props.rentals.map((rental, index) => <RentalCard key={index} rental={rental} />)}
+          {this.props.rentals.map((rental, index) => <RentalCard key={index} viewType="posted" rental={rental} />)}
         </Card.Group>
       </Container>
     );

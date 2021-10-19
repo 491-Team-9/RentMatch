@@ -20,7 +20,7 @@ class LikedRentals extends React.Component {
       <Container>
         <Header as="h2" textAlign="center">Liked Rentals</Header>
         <Card.Group itemsPerRow={4}>
-          {this.props.rentals.map((rental, index) => <RentalCard key={index} rental={rental} />)}
+          {this.props.rentals.map((rental, index) => <RentalCard key={index} viewType="liked" rental={rental} />)}
         </Card.Group>
       </Container>
     );
