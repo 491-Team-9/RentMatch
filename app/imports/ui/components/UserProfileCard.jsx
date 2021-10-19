@@ -17,15 +17,8 @@ class UserProfileCard extends React.Component {
     }
 
     acceptAction() {
-        Meteor.call('rentals.approveLiker', {rentalId: this.props.rental._id, likerId: this.props.userProfileId }, 
-        (err, res) => {
-            if (err) {
-
-            }
-            else {
-
-            }
-        });
+        Meteor.call('rentals.approveLiker', {rentalId: this.props.rental._id, likerId: this.props.userProfileId });
+        Meteor.call('users.connectUsers', { userId1: this.props.userProfileId, userId2: Meteor.user()._id });
     }
 
     rejectAction() {
