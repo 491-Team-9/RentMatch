@@ -1,14 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader, Grid, GridRow, GridColumn } from 'semantic-ui-react';
+import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Rentals } from '../../api/stuff/Rental';
+import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
-import StuffItem from '../components/StuffItem';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListLikedRentals extends React.Component {
+class LikedRentals extends React.Component {
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -20,23 +19,16 @@ class ListLikedRentals extends React.Component {
     return (
       <Container>
         <Header as="h2" textAlign="center">Liked Rentals</Header>
-        <Grid>
-        {this.props.rentals.map((rental) => {
-          console.log(rental);
-          return(
-            <GridColumn width="4">
-              <RentalCard key={rental._id} rental={rental} />
-            </GridColumn>
-          );
-        })}
-        </Grid>
+        <Card.Group itemsPerRow={4}>
+          {this.props.rentals.map((rental, index) => <RentalCard key={index} rental={rental} />)}
+        </Card.Group>
       </Container>
     );
   }
 }
 
 // Require an array of Stuff documents in the props.
-ListLikedRentals.propTypes = {
+LikedRentals.propTypes = {
   rentals: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -53,4 +45,4 @@ export default withTracker(() => {
     rentals,
     ready,
   };
-})(ListLikedRentals);
+})(LikedRentals);

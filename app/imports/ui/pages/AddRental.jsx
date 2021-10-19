@@ -1,12 +1,11 @@
 import React from 'react';
-import { Grid, Segment, Header, TextArea, Label } from 'semantic-ui-react';
+import { Grid, Segment, Header } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, LongTextField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Stuffs } from '../../api/stuff/Stuff';
-import { Rentals } from '../../api/stuff/Rental';
+import { Rentals } from '../../api/rental/Rental';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -26,13 +25,13 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-class AddStuff extends React.Component {
+class AddRental extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
     const { name, description, location, price, bedrooms, bathrooms, type } = data;
     const owner = Meteor.user();
-    console.log(owner);
+    // console.log(owner);
     Rentals.collection.insert({ name, description, location, price, bedrooms, bathrooms, type, likes: [], ownerId: owner._id },
       (error) => {
         if (error) {
@@ -70,4 +69,4 @@ class AddStuff extends React.Component {
   }
 }
 
-export default AddStuff;
+export default AddRental;

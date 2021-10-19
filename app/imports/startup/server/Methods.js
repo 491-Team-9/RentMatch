@@ -5,10 +5,10 @@ Meteor.methods({
   'todos.updateText'({ todoId, newText }) {
     new SimpleSchema({
       todoId: { type: String },
-      newText: { type: String }
+      newText: { type: String },
     }).validate({ todoId, newText });
 
-    console.log(newText);
+    // console.log(newText);
 
-  }
+  },
 });
