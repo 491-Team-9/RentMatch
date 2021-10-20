@@ -12,10 +12,100 @@
   ],
 
   "defaultRentals": [
-    { "title": "Apartment 1", "ownerId": "",
-      "description": "Quaint little apartment near the ocean.", "price": 1000, "bedrooms": 1,
-      "bathrooms": 1,
-      "type": "Apartment"
+    {
+      "title": "Apartment 1",
+      "ownerId": "admin@foo.com",
+      "description": "Quant little apartment near the ocean.",
+      "location": "Waikiki", "price": 1000, "bedrooms": 1, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/edc-web-tour-natasha-bardaran-9-1607305891.jpg",
+        "https://i.pinimg.com/originals/73/55/b5/7355b5d5fcd2f14bcf40e124b4e0dd0d.jpg",
+        "https://cdn.mos.cms.futurecdn.net/urnQmjBrp6U2nnAqzzf2gb-768-80.jpg"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Beautiful Renovated One Bedroom Apartment",
+      "ownerId": "admin@foo.com",
+      "description": "Newly decorated 1 bedroom apartment for rent in Kaimuki.",
+      "location": "Kaimuki", "price": 1200, "bedrooms": 1, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bedroom-wall-decor-8b079d042216bbc0f9f1c9fedb8f9843-1576084082.jpg",
+        "https://travelinspiredliving.com/wp-content/uploads/2019/11/Hotel-Kitchenette.jpg",
+        "https://secure.img1-fg.wfcdn.com/im/13250840/resize-h625-w500%5Ecompr-r85/1107/110738018/STL_default_name_110738018.jpg"],
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "2 bedroom 1 bath for rent",
+      "ownerId": "admin@foo.com",
+      "description": "2 bedroom 1 bath for rent in Moiliili, dogs cats okay, includes parking",
+      "location": "Moiliili", "price": 1700, "bedrooms": 2, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://www.thespruce.com/thmb/g9uX0wRr7tOp2S3iwRdBbaar4Vs=/3855x2891/smart/filters:no_upscale()/master-bedroom-in-new-luxury-home-with-chandelier-and-large-bank-of-windows-with-view-of-trees-1222623844-212940f4f89e4b69b6ce56fd968e9351.jpg",
+        "https://www.seashoreinnor.com/wp-content/uploads/sites/13/2019/02/deluxe-king-kitchen-3-1140x590.jpg",
+        "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F37%2F2020%2F01%2Fblack-white-modern-bathroom-plants-9a32b43a.jpg&q=85"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Studio apartment near McCully",
+      "ownerId": "admin@foo.com",
+      "description": "Studio apartment close to bus lines and only a few minutes walk to waikiki",
+      "location": "McCully", "price": 900, "bedrooms": 0, "bathrooms": 1, "type": "Studio",
+      "picture": ["https://i.pinimg.com/originals/b2/a9/b4/b2a9b46190f987f56a125c2225f02b67.jpg",
+        "https://bwfillmoreinn.com/wp-content/uploads/sites/84/2018/06/kitchenette1.jpg",
+        "https://www.thespruce.com/thmb/mAxTP5LWYXy6z_C0xsIgGHm4hW4=/1777x1333/smart/filters:no_upscale()/beautiful-bathrooms-ideas-4101846-hero-e436124be1664154b7771e3b0d23676f.jpg"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Studio in Waikiki",
+      "ownerId": "admin@foo.com",
+      "description": "Studio apartment in Waikiki. 5 minute walk to the beautiful Waikiki beach",
+      "location": "Waikiki", "price": 1100, "bedrooms": 0, "bathrooms": 1, "type": "Studio",
+      "picture": ["https://empire-s3-production.bobvila.com/pages/538/original/Bedroom.jpg?1310503752",
+        "https://i.pinimg.com/originals/1f/b5/0f/1fb50f9a6fbb22d86f2514f992348df3.jpg",
+        "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5ffdfc89a676bc1fa37f33cb%2FBlack-and-white-bathroom-with-deep-tub-and-large-shower-%2F960x0.jpg%3Ffit%3Dscale"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "1 bedroom apartment in Manoa valley",
+      "ownerId": "admin@foo.com",
+      "description": "Close to UH Manoa and safeway. Perfect location for students. Includes parking space.",
+      "location": "Manoa", "price": 1300, "bedrooms": 1, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://media.architecturaldigest.com/photos/5eac5fa22105f13b72dede45/master/pass/111LexowAve_Aug18-1074.jpg",
+        "https://www.theclearwaterbeachhotel.com/wp-content/uploads/studio-kitchenette-3.jpg",
+        "https://styleblueprint.com/wp-content/uploads/2020/08/SB-Memphis-KitchenUnlimited-StyleBlueprint_Bathrooms-1-1-scaled.jpg"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Convient location, Newly decorated",
+      "ownerId": "admin@foo.com",
+      "description": "Located near Ala Moana shopping center, only a few minutes away from Walmart and Don Quixote.",
+      "location": "AlaMoana", "price": 1250, "bedrooms": 1, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://cdn.galaxy.tf/unit-media/tc-default/uploads/images/room_photo/001/599/081/king-kitchen-1-1-wide.jpg"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Kahala 2 bedroom",
+      "ownerId": "admin@foo.com",
+      "description": "2 bedroom apartment located in Kahala, nearby bus lines and Kahala mall. Pets are okay.",
+      "location": "Kahala", "price": 1500, "bedrooms": 2, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://ksassets.timeincuk.net/wp/uploads/sites/56/2020/03/White-bedroom-with-alcove-shelving.jpg",
+        "https://webbox.imgix.net/images/rrcsupkbnhvjnbnf/addf376a-4e78-4040-b882-eca363303813.jpg?auto=format,compress&fit=crop&crop=entropy"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "3 bedroom for rent Palolo",
+      "ownerId": "admin@foo.com",
+      "description": "3 rooms 2 bath for rent in Palolo valley. Comes with 1 parking spot, pets are okay.",
+      "location": "Palolo", "price": 2400, "bedrooms": 3, "bathrooms": 2, "type": "Apartment",
+      "picture": ["https://bocadolobo.com/en/inspiration-and-ideas/wp-content/uploads/2018/03/Discover-the-Ultimate-Master-Bedroom-Styles-and-Inspirations-6_1.jpg"], 
+      "likes": [], "dislikes": []
+    },
+    {
+      "title": "Stunning Views over in Diamond Head",
+      "ownerId": "admin@foo.com",
+      "description": "Room for rent in diamond head with a view of the ocean. No smoking and must be quiet. no pets",
+      "location": "Diamond Head", "price": 900, "bedrooms": 2, "bathrooms": 1, "type": "Apartment",
+      "picture": ["https://st.hzcdn.com/simgs/pictures/bedrooms/eastside-costa-mesa-remodel-willhoit-construction-inc-img~aa51b7e60e2f04e4_14-6807-1-89868fe.jpg",
+        "https://i.pinimg.com/originals/78/c9/d8/78c9d85acc9216aaf8db3c4aadf4deeb.jpg",
+        "https://media.improvenet.craftjack.io/media/Default/bathroom/Small%20Bathroom%20Layouts_Update.jpg"], 
+      "likes": [], "dislikes": []
     }
   ]
 }
