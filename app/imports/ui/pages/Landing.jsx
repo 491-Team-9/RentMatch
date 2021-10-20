@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Button, Container, Dropdown, Form, Grid, Loader, Select } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
@@ -31,10 +31,10 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    let success = (foo) => { 
+    let success = (foo) => {
       console.log(foo);
     }
-    let error = (foo) => { 
+    let error = (foo) => {
       console.log(foo);
     }
     navigator.geolocation.getCurrentPosition(success, error, {});
@@ -42,6 +42,49 @@ class Landing extends React.Component {
 
   renderPage() {
     // console.log('renderPage()');
+    const priceOptions = [
+      { key: 'af', value: 'af', text: 'Afghanistan' }
+      ]
+
+    const locationOptions = [
+      { key: 'aiea', value: 'aiea', text: 'Aiea' },
+      { key: 'ewaBeach', value: 'ewaBeach', text: 'Ewa Beach' },
+      { key: 'haleiwa', value: 'haleiwa', text: 'Haleiwa' },
+      { key: 'hauula', value: 'hauula', text: 'Hauula' },
+      { key: 'hawaiiKai', value: 'hawaiiKai', text: 'Hawaii Kai' },
+      { key: 'honolulu', value: 'honolulu', text: 'Honolulu' },
+      { key: 'kaaawa', value: 'kaaawa', text: 'Kaaawa' },
+      { key: 'kahala', value: 'kahala', text: 'Kahala' },
+      { key: 'kahuku', value: 'kahuku', text: 'Kahuku' },
+      { key: 'kailua', value: 'kailua', text: 'Kailua' },
+      { key: 'kaneohe', value: 'kaneohe', text: 'Kaneohe' },
+      { key: 'kapolei', value: 'kapolei', text: 'Kapolei' },
+      { key: 'laie', value: 'laie', text: 'Laie' },
+      { key: 'lanikai', value: 'lanikai', text: 'Lanikai' },
+      { key: 'maili', value: 'maili', text: 'Maili' },
+      { key: 'makaha', value: 'makaha', text: 'makaha' },
+      { key: 'manoa', value: 'manoa', text: 'Manoa' },
+      { key: 'mililani', value: 'mililani', text: 'Mililani' },
+      { key: 'nanakuli', value: 'nanakuli', text: 'Nanakuli' },
+      { key: 'pearlCity', value: 'pearlCity', text: 'Pearl City' },
+      { key: 'wahiawa', value: 'wahiawa', text: 'Wahiawa' },
+      { key: 'waialua', value: 'waialua', text: 'Waialua' },
+      { key: 'waianae', value: 'waianae', text: 'Waianae' },
+      { key: 'waikiki', value: 'waikiki', text: 'Waikiki' },
+      { key: 'waimanalo', value: 'waimanalo', text: 'Waimanalo' },
+      { key: 'waipahu', value: 'waipahu', text: 'Waipahu' },
+    ]
+
+    const typeOptions = [
+      { key: 'house', value: 'house', text: 'House' },
+      { key: 'apartment', value: 'apartment', text: 'Apartment' },
+      { key: 'studio', value: 'studio', text: 'Studio' },
+      { key: 'condo', value: 'condo', text: 'Condo' },
+      { key: 'room', value: 'room', text: 'Room' },
+      { key: 'loft', value: 'loft', text: 'Loft' },
+      { key: 'cottage', value: 'cottage', text: 'Cottage' },
+      { key: 'in-law', value: 'in-law', text: 'In-Law' },
+    ]
     const rental = this.props.rentals[this.state.currentRentalIndex];
     if (!rental) {
       return (
@@ -51,11 +94,38 @@ class Landing extends React.Component {
       );
     }
     return (
-      <Grid centered id='landing-page' verticalAlign='middle' container>
-        <Grid.Column width={6}>
-          <RentalCard key={rental._id} rental={rental} viewType="landing" nextCardFunction={this.getNextCard}/>
-        </Grid.Column>
-      </Grid>
+      <Container>
+        <Form>
+          <Grid centered columns={5}>
+            <Grid.Column>
+              <Form.Select label='Price' placeholder='Price Range' options={priceOptions} />
+            </Grid.Column>
+            <Grid.Column>
+              <Dropdown
+                placeholder='Search Town/City'
+                fluid
+                search
+                selection
+                options={locationOptions}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Form.Select label='Bedrooms' placeholder='Number of Bedrooms' options={countryOptions} />
+            </Grid.Column>
+            <Grid.Column>
+              <Select placeholder='Type of Home' options={typeOptions} />
+            </Grid.Column>
+            <Grid.Column>
+              <Button type='submit'>Submit</Button>
+            </Grid.Column>
+          </Grid>
+        </Form>
+        <Grid centered id='landing-page' verticalAlign='middle' container>
+          <Grid.Column width={6}>
+            <RentalCard key={rental._id} rental={rental} viewType="landing" nextCardFunction={this.getNextCard}/>
+          </Grid.Column>
+        </Grid>
+      </Container>
     );
   }
 

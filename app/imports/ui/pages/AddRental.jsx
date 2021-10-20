@@ -17,7 +17,7 @@ const formSchema = new SimpleSchema({
   bathrooms: Number,
   type: {
     type: String,
-    allowedValues: ['house', 'room', 'apartment', 'condo', 'in-law', 'cottage', 'loft'],
+    allowedValues: ['house', 'room', 'apartment', 'condo', 'in-law', 'cottage', 'loft', 'studio'],
     defaultValue: 'apartment',
   },
 });
@@ -30,9 +30,9 @@ class AddRental extends React.Component {
   // On submit, insert the data.
   submit(data, formRef) {
     const { title, description, location, price, bedrooms, bathrooms, type } = data;
-    const owner = Meteor.user();
+    const owner = Meteor.user().username;
     // console.log(owner);
-    Rentals.collection.insert({ title, description, location, price, bedrooms, bathrooms, type, likes: [], ownerId: owner._id },
+    Rentals.collection.insert({ title, description, location, price, bedrooms, bathrooms, type, likes: [], owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');

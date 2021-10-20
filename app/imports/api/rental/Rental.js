@@ -14,7 +14,7 @@ class RentalsCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       title: String,
-      ownerId: String,
+      owner: String,
       description: String,
       location: String,
       price: Number,
