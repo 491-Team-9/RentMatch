@@ -59,7 +59,7 @@ class ChatBar extends React.Component {
 
                         return (
                             <Popup key={chat._id} on="click" pinned trigger={<Menu.Item key={chat._id}>
-                                {chat.users[0].email}
+                                {user.emails[0].address == chat.users[0].email ? chat.users[1].email : chat.users[0].email}
                             </Menu.Item>}>
                                 <ChatWindow key={chat._id} chat={chat} user={user}/>
                             </Popup>

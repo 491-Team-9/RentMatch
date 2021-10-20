@@ -25,7 +25,7 @@ class PostedRentals extends React.Component {
               {
                 this.props.rentals.map((rental) => {
                   return (
-                    <Grid.Row>
+                    <Grid.Row key={rental._id}>
                       <Grid.Column width="4">
                         <RentalCard key={rental._id} viewType="posted" rental={rental}/>
                       </Grid.Column>
