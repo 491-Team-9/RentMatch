@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Container, Form, Grid, Loader } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
