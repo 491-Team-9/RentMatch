@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Menu, Dropdown, Comment, Popup, Icon, Form, Button, Header } from 'semantic-ui-react';
 import { Chats } from '../../api/Chats';
+import ChatWindow from './ChatWindow';
 
 class ChatBar extends React.Component {
     constructor(props) {
@@ -55,35 +56,12 @@ class ChatBar extends React.Component {
             <div style={divStyle}>
                 <Menu attached="bottom" borderless inverted>
                     {chats.length ? chats.map(chat => {
+
                         return (
                             <Popup key={chat._id} on="click" pinned trigger={<Menu.Item key={chat._id}>
                                 {chat.users[0].email}
                             </Menu.Item>}>
-                                <Comment.Group>
-                                    <Header as='h3' dividing>
-                                        Chat
-                                    </Header>
-                                    {chat.messages.map(message => {
-                                        <Comment>
-                                            <Comment.Content>
-                                                <Comment.Author as='a'>{message.email}</Comment.Author>
-                                                <Comment.Metadata>
-                                                    <div>{message.time}</div>
-                                                </Comment.Metadata>
-                                                <Comment.Text>{message.message}</Comment.Text>
-                                                <Comment.Actions>
-                                                    <Comment.Action>Reply</Comment.Action>
-                                                </Comment.Actions>
-                                            </Comment.Content>
-                                        </Comment>
-                                    })}
-
-                                    <Form reply>
-                                        <Form.Input />
-                                        <Button content='Add Reply' labelPosition='left' icon='edit' primary />
-                                    </Form>
-                                </Comment.Group>
-
+                                <ChatWindow key={chat._id} chat={chat} user={user}/>
                             </Popup>
                         );
                     }) : ''}

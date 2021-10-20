@@ -19,7 +19,9 @@ class ChatsCollection {
       'users.$.email': String,
       messages: Array,
       'messages.$': { type: Object, optional: true},
+      'messages.$_id': { type: String, optional: true},
       'messages.$.userId': { type: String, optional: true},
+      'messages.$.email': { type: String, optional: true},
       'messages.$.time': { type: Date, optional: true},
       'messages.$.message': { type: String, optional: true},
     }, { tracker: Tracker });
