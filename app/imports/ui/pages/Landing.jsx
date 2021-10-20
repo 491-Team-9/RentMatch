@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Dropdown, Form, Grid, Loader, Select } from 'semantic-ui-react';
+import { Container, Form, Grid, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Rentals } from '../../api/rental/Rental';
 import RentalCard from '../components/RentalCard';
@@ -96,29 +96,20 @@ class Landing extends React.Component {
     return (
       <Container>
         <Form>
-          <Grid centered columns={5}>
-            <Grid.Column>
-              <Form.Select label='Price' placeholder='Price Range' options={priceOptions} />
-            </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Search Town/City'
-                fluid
-                search
-                selection
-                options={locationOptions}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Form.Select label='Bedrooms' placeholder='Number of Bedrooms' options={countryOptions} />
-            </Grid.Column>
-            <Grid.Column>
-              <Select placeholder='Type of Home' options={typeOptions} />
-            </Grid.Column>
-            <Grid.Column>
-              <Button type='submit'>Submit</Button>
-            </Grid.Column>
-          </Grid>
+          <Form.Group widths='equal'>
+            <Form.Select label='Price' placeholder='Price Range' options={priceOptions} />
+            <Form.Select
+              label='Location'
+              placeholder='Search Town/City'
+              fluid
+              search
+              selection
+              options={locationOptions}
+            />
+            <Form.Field label='Bedrooms' placeholder='Number of Bedrooms' control='input' type='number'/>
+            <Form.Select label='Type' placeholder='Type of Home' options={typeOptions} />
+            <Button type='submit'>Submit</Button>
+          </Form.Group>
         </Form>
         <Grid centered id='landing-page' verticalAlign='middle' container>
           <Grid.Column width={6}>
