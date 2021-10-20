@@ -67,10 +67,10 @@ class ChatBar extends React.Component {
                     }) : ''}
                     <Menu.Item position="right">
                         <Dropdown id="chat-menu" text="Chat " pointing="top right" icon={'chat'}>
-                            <Dropdown.Menu>
-                                {user ? user.connections.map(connection => {
+                            <Dropdown.Menu position="top">
+                                {user ? user.connections?.map(connection => {
                                     return (<Dropdown.Item key={connection.userId} id={connection.userId} onClick={() => this.openChat(connection)} icon="user" text={connection.email} />);
-                                }) : <Dropdown.Item icon="user" text="You're not connected with any users yet!" />
+                                }) : <Dropdown.Item direction="up" icon="user" text="You're not connected with any users yet!" />
                                 }
                             </Dropdown.Menu>
                         </Dropdown>

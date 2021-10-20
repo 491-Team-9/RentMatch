@@ -54,6 +54,7 @@ class ChatWindow extends React.Component {
                 <Header as='h3' dividing>
                     Chat
                 </Header>
+                <div style={chatWindowStyle}>
                 {chat.messages.map((message, index) => {
                     return(
                     <Comment key={index}>
@@ -67,7 +68,7 @@ class ChatWindow extends React.Component {
                     </Comment>
                     )
                 })}
-
+                </div>
                 <Form reply>
                     <Form.Input value={this.state.input} onChange={this.handleChange} />
                     <Button content='Add Reply' labelPosition='left' icon='edit' primary onClick={() => this.postMessage()} />
