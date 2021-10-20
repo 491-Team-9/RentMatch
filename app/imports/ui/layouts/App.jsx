@@ -12,7 +12,10 @@ import LikedRental from '../pages/LikedRental';
 import PostedRentals from '../pages/PostedRentals';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddRental from '../pages/AddRental';
+import AddProfile from '../pages/AddProfile';
+import MyProfile from '../pages/MyProfile';
 import EditStuff from '../pages/EditStuff';
+import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -30,6 +33,9 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
+            <ProtectedRoute path="/add-profile" component={AddProfile}/>
+            <ProtectedRoute path="/profile" component={MyProfile}/>
+            <ProtectedRoute path="/edit-profile/:_id" component={EditProfile}/>
             <ProtectedRoute path="/home" component={Home}/>
             <ProtectedRoute path="/liked" component={LikedRental}/>
             <ProtectedRoute path="/add" component={AddRental}/>
