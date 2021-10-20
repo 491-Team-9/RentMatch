@@ -41,8 +41,8 @@ class Landing extends React.Component {
   }
 
   renderPage() {
-    // console.log('renderPage()');
-    const rental = this.props.rentals[this.state.currentRentalIndex];
+    const rental = this.props.rentals[0];
+    console.log('renderPage()', this.props.rentals);
     if (!rental) {
       return (
         <Grid centered id='landing-page' verticalAlign='middle' container>
