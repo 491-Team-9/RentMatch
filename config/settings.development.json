@@ -1,21 +1,37 @@
 {
-"defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
-  ],
-
-  "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  "defaultAccounts": [
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "profile" : {
+        "first" : "Admin",
+        "last" : "Admin",
+        "bio" : "I am an admin."
+      },
+      "role": "admin"
+    },
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "profile" : {
+        "first" : "John",
+        "last" : "Doe",
+        "bio" : "I am looking for a tenant."
+      }
+    }
   ],
 
   "defaultRentals": [
-    { "title": "Apartment 1", "ownerId": "",
-      "description": "Quaint little apartment near the ocean.", "price": 1000, "bedrooms": 1,
-      "bathrooms": 1,
-      "type": "Apartment"
+    {
+      "title": "Highly desirable 2 bdr/2 bth luxurious condo in Nuuanu",
+      "description": "Highly desirable 2 bdr/2 bth luxurious condo in Nuuanu. Only 4 units per floor. Spacious layout with large lanais overlooking the gorgeous views of the city, ocean, and mountains. Central AC and washer/dryer inside unit. Includes 2 pkg(tandem). Secured bldg. with nice amenities featuring a BBQ area, gym, and pool. Prime location close to downtown, Ala Moana, Kakaako, shopping centers, and freeway access. No pets.\n\n1 year lease. Water, sewer, basic cable and internet included. No pets.",
+      "location": "2047 Nuuanu Ave APT 1001, Honolulu, HI 96817",
+      "price": 2950,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "type": "apartment",
+      "likes": [],
+      "ownerId": "CyQaYYuzS9r2bWRp5"
     }
   ]
 }

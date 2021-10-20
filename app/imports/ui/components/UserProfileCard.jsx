@@ -39,7 +39,9 @@ class UserProfileCard extends React.Component {
     return (
       <Card>
         <Card.Content>
-          <Card.Header>{user.emails[0].address}</Card.Header>
+          <Card.Header>{user.profile.first} {user.profile.last}</Card.Header>
+          <Card.Meta>{user.emails[0].address}</Card.Meta>
+          <Card.Description>{user.profile.bio}</Card.Description>
         </Card.Content>
         {/* middle section of the card */}
         <Card.Content extra>
