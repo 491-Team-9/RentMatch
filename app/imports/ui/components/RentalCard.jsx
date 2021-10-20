@@ -14,6 +14,11 @@ class RentalCard extends React.Component {
     this.cardUser = Meteor.user();
     this.rejectAction = this.rejectAction.bind(this);
     this.likeAction = this.likeAction.bind(this);
+    this.prevAction = this.prevAction.bind(this);
+    this.nextAction = this.nextAction.bind(this);
+    this.state = {
+      index: 0,
+    }
   }
 
   rejectAction() {
@@ -58,6 +63,24 @@ class RentalCard extends React.Component {
           getNextCard();
         }
       });
+  }
+
+  nextAction = () => {
+    let max = this.props.rental.picture.length;
+    if (this.state.index + 1 == max) {
+      this.setState({ index: 0 });
+    } else {
+      this.setState({ index: this.state.index + 1 });
+    }
+  }
+
+  prevAction() {
+    let max = this.props.rental.picture.length;
+    if (this.state.index - 1 < 0) {
+      this.setState({ index: max - 1 });
+    } else {
+      this.setState({ index: this.state.index - 1 });
+    }
   }
 
   render() {
@@ -105,8 +128,24 @@ class RentalCard extends React.Component {
             <br />{rental.location}
           </Card.Content>
         </Card.Content>
-        <Image src='https://about.hawaiilife.com/wp-content/uploads/2018/06/View-from-Penthouse-at-the-Hokua-at-1288-Ala-Moana-e1528127882669.jpg' wrapped ui={false} />
+        {rental.picture.length > 0 ?
+        <Image src={rental.picture[this.state.index]} wrapped ui={false}/>
+        :
+          <Image
+            src={'https://about.hawaiilife.com/wp-content/uploads/2018/06/View-from-Penthouse-at-the-Hokua-at-1288-Ala-Moana-e1528127882669.jpg'}
+            wrapped ui={false} />
+        
+        }
         {/* middle section of the card */}
+        <Card.Content>
+          <Button onClick={this.prevAction}>
+            <Icon name='long arrow alternate left' />
+          </Button>
+          <Button floated="right" onClick={this.nextAction}>
+            <Icon name='long arrow alternate right' />
+          </Button>
+        </Card.Content>
+
         <Card.Content>
           <Card.Description>
             {rental.description}
@@ -134,6 +173,7 @@ RentalCard.propTypes = {
     bedrooms: PropTypes.number,
     bathrooms: PropTypes.number,
     type: PropTypes.string,
+    picture: PropTypes.array,
     likes: PropTypes.array,
     images: PropTypes.array,
   }).isRequired,

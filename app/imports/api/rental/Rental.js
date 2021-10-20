@@ -21,6 +21,8 @@ class RentalsCollection {
       bedrooms: Number,
       bathrooms: Number,
       type: String,
+      picture: Array,
+      'picture.$': String,
       likes: Array,
       'likes.$': Object,
       'likes.$.likerId': String,
