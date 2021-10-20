@@ -4,6 +4,8 @@ RentMatch is a real-time Meteor app created for the 2021 Meteor Hackathon. RentM
 
 It's like LinkedIn, but for finding a place to rent. 
 
+The app is deployed here: [https://491-team-9-housematch.meteorapp.com/#/posted](https://491-team-9-housematch.meteorapp.com/#/posted)
+
 ## 491 Team 9
 
 - Louella Caraang @lcaraang
