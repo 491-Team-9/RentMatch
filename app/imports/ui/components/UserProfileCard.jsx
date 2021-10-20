@@ -43,42 +43,42 @@ class UserProfileCard extends React.Component {
       Meteor.call('user.addProfileInfo', user._id);
     }
     return (
-      <Card>
-        <Card.Content>
-          <Modal trigger={
+      <Modal trigger={
+        <Card>
+          <Card.Content>
             <Card.Header>
               {user.emails[0].address}
             </Card.Header>
-          }>
-            <Modal.Content>
-              <Card>
-                <Card.Content>
-                  <Card.Header>{user.profile?.firstName} {user.profile?.lastName}</Card.Header>
-                  <Card.Meta>{user.profile?.email}</Card.Meta>
-                  <Card.Meta><Icon name="users" /> {user.profile?.renters} <Icon name="paw" /> {user.profile?.pets}</Card.Meta>
-                  <Card.Description>{user.profile?.biography}</Card.Description>
-                </Card.Content>
-              </Card>
-            </Modal.Content>
-          </Modal>
-          <Card.Header>{user.profile?.firstName} {user.profile?.lastName}</Card.Header>
-          <Card.Meta>{user.profile?.email}</Card.Meta>
-          <Card.Meta><Icon name="users" /> {user.profile?.renters} <Icon name="paw" /> {user.profile?.pets}</Card.Meta>
-        </Card.Content>
-        <Card.Content extra>
-          {/* <Button color="red" onClick={this.rejectAction}>
+            <Card.Header>{user.profile?.firstName} {user.profile?.lastName}</Card.Header>
+            <Card.Meta>{user.profile?.email}</Card.Meta>
+            <Card.Meta><Icon name="users" /> {user.profile?.renters} <Icon name="paw" /> {user.profile?.pets}</Card.Meta>
+          </Card.Content>
+          <Card.Content extra>
+            {/* <Button color="red" onClick={this.rejectAction}>
             <Button.Content>
               <Icon name='close' />
             </Button.Content>
           </Button> */}
-          {this.isUserIdLiked(user._id) ? '' :
-          <Button color="blue" floated="right" onClick={this.acceptAction}>
-            <Button.Content>
-              <Icon name='heart' />
-            </Button.Content>
-          </Button>}
-        </Card.Content>
-      </Card>
+            {this.isUserIdLiked(user._id) ? '' :
+              <Button color="blue" floated="right" onClick={this.acceptAction}>
+                <Button.Content>
+                  <Icon name='heart' />
+                </Button.Content>
+              </Button>}
+          </Card.Content>
+        </Card>
+      }>
+        <Modal.Content>
+          <Card fluid>
+            <Card.Content>
+              <Card.Header>{user.profile?.firstName} {user.profile?.lastName}</Card.Header>
+              <Card.Meta>{user.profile?.email}</Card.Meta>
+              <Card.Meta><Icon name="users" /> {user.profile?.renters} <Icon name="paw" /> {user.profile?.pets}</Card.Meta>
+              <Card.Description>{user.profile?.biography}</Card.Description>
+            </Card.Content>
+          </Card>
+        </Modal.Content>
+      </Modal>
     );
   }
 
