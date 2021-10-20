@@ -1,0 +1,6 @@
+#landing {
+  height: 80vh;
+  align-items: center;
+  background-image: url("/images/landing.jpeg");
+  background-size: cover;
+}

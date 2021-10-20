@@ -22,7 +22,7 @@ class PostedRentals extends React.Component {
     if (this.props.rentals.length < 1) {
       return (
         <Header id="signout-page" as="h2" textAlign="center">
-            No rentals
+            You do not have any posts
         </Header>
       );
     }
