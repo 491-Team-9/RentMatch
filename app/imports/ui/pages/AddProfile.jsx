@@ -28,14 +28,7 @@ class AddProfile extends React.Component {
     const { firstName, lastName, pets, renters, biography, email } = data;
     const userId = Meteor.user()._id;
     Meteor.call('user.updateProfile', { firstName, lastName, email, pets, renters, biography });
-    // Users.collection.insert({ firstName, lastName, email, pets, renters, biography, owner },
-    //   (error) => {
-    //     if (error) {
-    //       swal('Error', error.message, 'error');
-    //     } else {
-    //       swal('Success', 'Item added successfully', 'success');
-    //     }
-    //   });
+    swal('Success', 'Updated Profile', 'success');
   }
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
