@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Button, Modal } from 'semantic-ui-react';
+import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -17,6 +18,14 @@ class UserProfileCard extends React.Component {
   acceptAction() {
     Meteor.call('rentals.approveLiker', { rentalId: this.props.rental._id, likerId: this.props.userProfileId });
     Meteor.call('users.connectUsers', { userId1: this.props.userProfileId, userId2: Meteor.user()._id });
+    swal('Approved', 'You can now chat with this user', 'success');
+  }
+
+  isUserIdLiked(userId) {
+    let user = Meteor.user();
+    if (user.connections) {
+      return user.connections.find(c => c.userId == userId);
+    }
   }
 
   rejectAction() {
@@ -38,7 +47,7 @@ class UserProfileCard extends React.Component {
         <Card.Content>
           <Modal trigger={
             <Card.Header>
-              {user.profile?.email}
+              {user.emails[0].address}
             </Card.Header>
           }>
             <Modal.Content>
@@ -52,19 +61,22 @@ class UserProfileCard extends React.Component {
               </Card>
             </Modal.Content>
           </Modal>
+          <Card.Header>{user.profile?.firstName} {user.profile?.lastName}</Card.Header>
+          <Card.Meta>{user.profile?.email}</Card.Meta>
+          <Card.Meta><Icon name="users" /> {user.profile?.renters} <Icon name="paw" /> {user.profile?.pets}</Card.Meta>
         </Card.Content>
-        {/* middle section of the card */}
         <Card.Content extra>
-          <Button color="red" onClick={this.rejectAction}>
+          {/* <Button color="red" onClick={this.rejectAction}>
             <Button.Content>
               <Icon name='close' />
             </Button.Content>
-          </Button>
+          </Button> */}
+          {this.isUserIdLiked(user._id) ? '' :
           <Button color="blue" floated="right" onClick={this.acceptAction}>
             <Button.Content>
               <Icon name='heart' />
             </Button.Content>
-          </Button>
+          </Button>}
         </Card.Content>
       </Card>
     );
