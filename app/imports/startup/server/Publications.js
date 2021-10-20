@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Rentals } from '../../api/rental/Rental';
+import { Chats } from '../../api/Chats';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -10,6 +11,18 @@ Meteor.publish(Rentals.userPublicationName, function () {
   }
   return this.ready();
 });
+
+Meteor.publish(Chats.userChatsPublicationName, function () {
+  if (this.userId) {
+    return Chats.collection.find({ 'users.userId': this.userId });
+  }
+  return this.ready();
+});
+
+Meteor.publish("userData", function () {
+  return Meteor.users.find({_id: this.userId}, { fields: { connections: 1 }});
+});
+
 
 Meteor.publish(Rentals.postedRentalsPublicationName, function () {
   if (this.userId) {
