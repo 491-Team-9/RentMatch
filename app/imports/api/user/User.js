@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
+import { number } from 'prop-types';
 
 /**
  * The UsersCollection. It encapsulates state and variable values for user.
@@ -16,8 +17,9 @@ class UsersCollection {
       firstName: String,
       lastName: String,
       email: String,
+      renters: Number,
+      pets: Number,
       biography: String,
-      owner: String,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);

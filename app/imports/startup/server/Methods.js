@@ -2,6 +2,42 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { Rentals } from '../../api/rental/Rental';
 import { useParams } from 'react-router';
+import { User } from '../../api/user/User';
+
+Meteor.methods({
+    'user.getInfo'({ userId }) {
+        new SimpleSchema({
+            userId: { type: String },
+        }).validate({ userId1 });
+
+        return User.collection.findOne({ userId });
+    }
+});
+
+Meteor.methods({
+    'user.updateProfile'(profile) {
+        Meteor.users.update({ _id: Meteor.userId() }, { $set: { profile }});
+    }
+});
+
+Meteor.methods({
+    'user.addProfileInfo'(userId) {
+        let user = Meteor.users.findOne({ _id: userId });
+        console.log(user);
+        if (user && !user.profile) {
+            let profile = {
+                firstname: '',
+                lastname: '',
+                email: user.emails[0].address,
+                pets: 0,
+                renters: 0,
+                biography: ''
+            }
+            Meteor.users.update({ _id: userId }, { $set: { profile }});
+        }
+
+    }
+})
 
 Meteor.methods({
     'users.connectUsers'({ userId1, userId2 }) {

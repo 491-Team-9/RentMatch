@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField, NumField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -15,10 +15,12 @@ class EditProfile extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { firstName, lastName, email, biography, _id } = data;
-    Users.collection.update(_id, { $set: { firstName, lastName, email, biography } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+    const { firstName, lastName, pets, renters, biography, email } = data;
+    const userId = Meteor.user()._id;
+    let val = Meteor.call('user.updateProfile', { firstName, lastName, email, pets, renters, biography });
+    swal('Success', 'Profile updated successfully', 'success');
+    // Users.collection.update(_id, { $set: { firstName, lastName, email, biography } }, (error) => (error ?
+    //   swal('Error', error.message, 'error') :
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -32,15 +34,16 @@ class EditProfile extends React.Component {
       <Grid container centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">Edit User</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc.profile}>
             <Segment>
               <TextField name='firstName'/>
               <TextField name='lastName'/>
               <TextField name='email'/>
+              <NumField name='renters' decimal={false}/>
+              <NumField name='pets' decimal={false}/>
               <LongTextField name='biography'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='owner' />
             </Segment>
           </AutoForm>
         </Grid.Column>
@@ -63,9 +66,9 @@ export default withTracker(({ match }) => {
   // Get access to User documents.
   const subscription = Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready();
   // Get the document
-  const doc = Users.collection.findOne(documentId);
+  const doc = Meteor.user();
+  const ready = doc != null;
   return {
     doc,
     ready,

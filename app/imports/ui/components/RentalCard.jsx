@@ -91,9 +91,10 @@ class RentalCard extends React.Component {
       if (likes.length) {
         footer =
                 (<Card.Content extra>
-                  { likes.map(like => like.likerId)}
-                </Card.Content>);
-      } else footer = (<Card.Content extra> hello </Card.Content>);
+                  <Icon name="heart"></Icon>
+                  { likes.length }
+                  </Card.Content>);
+      }
     }
     return (
       <Card centered fluid>

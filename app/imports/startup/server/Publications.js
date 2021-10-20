@@ -21,7 +21,7 @@ Meteor.publish(Chats.userChatsPublicationName, function () {
 });
 
 Meteor.publish("userData", function () {
-  return Meteor.users.find({_id: this.userId}, { fields: { connections: 1 }});
+  return Meteor.users.find({_id: this.userId}, { fields: { connections: 1, profile: 1 }});
 });
 
 
@@ -40,7 +40,7 @@ Meteor.publish(Rentals.likedPublicationName, function () {
 });
 
 Meteor.publish('allUsers', function () {
-  return Meteor.users.find({}, { fields: { _id: 1, username: 1, emails: 1 } });
+  return Meteor.users.find({}, { fields: { _id: 1, username: 1, emails: 1, profile: 1, connections: 1 } });
 });
 
 // Admin-level publication.
