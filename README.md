@@ -26,24 +26,24 @@ By minimizing the amount of variety in the items being worked with we are able t
 ## RentMatch Running
 
 Opening up RentMatch we reach the welcoming landing page.
-<img class="ui fluid image" src="../images/rent_home.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/rent_home.png">
 
 The renter or landlord then proceeds to the login page:
-<img class="ui fluid image" src="../images/rent_home.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/rent_home.png">
 
 After logging in the renter is able to see rental options and like or dislike them immediately like Tinder:
-<img class="ui fluid image" src="../images/rent_tinder.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/rent_tinder.png">
 
 Once the renter likes a rental, it gets added to their likes and they must wait for the landlord to approve it:
-<img class="ui fluid image" src="../images/rent_like.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/images/rent_like.png">
 
 Renter and landlord are also able to chat with the chat function on the bottom of the screen.
 
 Both the landlord and renter are able to view profiles to deem if they are safe or not. The user is also able to attach links to their other social medias so they can weed out the scams, if any:
-<img class="ui fluid image" src="../images/rent_profilee.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/images/rent_profilee.png">
 
 Landlords are also able to add rentals through the Add Rental page that asks for the necessary information about the home to help renters. Each field is required to make sure the rentals have enough information on them for the renters:
-<img class="ui fluid image" src="../images/rent_add.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/491-Team-9.github.io/tree/main/images/images/rent_add.png">
 
 ## Installation
 
