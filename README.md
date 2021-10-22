@@ -26,7 +26,7 @@ By minimizing the amount of variety in the items being worked with we are able t
 ## RentMatch Running
 
 Opening up RentMatch we reach the welcoming landing page.
-<img class="ui fluid image" src="../doc/rent_home.png">
+<img class="ui fluid image" src="https://github.com/491-Team-9/RentMatch/blob/master/doc/rent_home.png">
 
 The renter or landlord then proceeds to the login page:
 <img class="ui fluid image" src="../doc/rent_login.png">
